@@ -2,7 +2,7 @@
 function optionChanged(selection) {
     console.log(selection);
     // read in json file
-    d3.json("../../data/samples.json").then((data)=> {
+    d3.json("samples.json").then((data)=> {
         console.log(data);
         // clear dropdown
         d3.select("#selDataset").html("");
