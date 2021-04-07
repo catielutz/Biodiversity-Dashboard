@@ -13,13 +13,6 @@ function optionChanged(selection) {
     d3.select("#selDataset").node().value = selection;
 
     var metaDataID = data.metadata.filter(subject => (subject.id == selection));
-    //        {
-    //       console.log("------------------------")
-    //       console.log(subject);
-    //       console.log(subject.id);
-          
-    //    };
-
     console.log(metaDataID);
 
     // demographic panel 
@@ -48,7 +41,7 @@ function optionChanged(selection) {
         text: otuLabels
     }
     var layout = {
-        title: "<b>Top 10 OTUs found in Individual Subject</b>",
+        title: "<b>Top 10 OTUs found per<br>Individual Subject</b>",
         xaxis: {title: "<i>Number of Samples Collected</i>"},
         yaxis: {title: "<i>OTU ID</i>"}
     }
@@ -65,14 +58,19 @@ function optionChanged(selection) {
         mode: "markers",
         marker: {
             color: bubbleOTU,
-            colorscale: "YlGnBu",
+            colorscale: "Portland",
             type: "heatmap",
             size: bubbleVal
         }
     }
-    Plotly.newPlot("bubble", [trace1]);
 
-    // attempt at bonus gauge - I did it!!
+    var layout1 = {
+        xaxis: {title: "<i>OTU ID</i>"},
+        yaxis: {title: "<i>Samples Collected</i>"}
+    }
+    Plotly.newPlot("bubble", [trace1], layout1);
+
+    // attempt bonus gauge - I did it!!
     var gaugeDiv = d3.select("#gauge");
     gaugeDiv.html("");
     var washFrequency = metaDataID[0].wfreq;
@@ -81,22 +79,22 @@ function optionChanged(selection) {
         {
         domain: { x: [0, 1], y: [0, 1] },
 		value: washFrequency,
-        title: { text: "<b>Belly Button Washing Frequency</b><br> Scrubs/Week" },
+        title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs/Week" },
         type: "indicator",
 		mode: "gauge+number",
         gauge: {
             axis: { range: [0,9] },
-            bar: { color: "#d2dbf4" },
+            bar: { color: "#def4f2" },
             steps: [
-               { range: [0, 1], color: "#d9fbfd" },
-               { range: [1, 2], color: "#c9fae8" },
-               { range: [2, 3], color: "#b4e9d7" },
-               { range: [3, 4], color: "#7fcdbb" },
-               { range: [4, 5], color: "#41b6c4" },
-               { range: [5, 6], color: "#1d91c0" },
-               { range: [6, 7], color: "#225ea8" },
-               { range: [7, 8], color: "#01579B" },
-               { range: [8, 9], color: "#0c2c84"}
+               { range: [0, 1], color: "#a01b1b" },
+               { range: [1, 2], color: "#e46262" },
+               { range: [2, 3], color: "#f0986f" },
+               { range: [3, 4], color: "#f6c474" },
+               { range: [4, 5], color: "#88bdb2" },
+               { range: [5, 6], color: "#54abce" },
+               { range: [6, 7], color: "#01579B" },
+               { range: [7, 8], color: "#0c2c84" },
+               { range: [8, 9], color: "#530791"}
             ],
             threshold: {
                value: washFrequency
