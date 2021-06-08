@@ -1,4 +1,4 @@
-# Plot.ly-Challenge
+# Belly Button Biodiversity Dashboard
 
 Dashboard launch page:
 
